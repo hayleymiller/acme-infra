@@ -1,5 +1,9 @@
 terraform {
   required_providers {
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.6"
+    }
     null = {
       source  = "hashicorp/null"
       version = "~> 3.2"
@@ -7,12 +11,16 @@ terraform {
   }
 }
 
-# The resource Sentinel will evaluate
-resource "null_resource" "demo" {
-  triggers = {
-    cost_center = var.cost_center  # <-- policy requires this to be non-empty
-    bump        = var.bump         # <-- we toggle this to force updates
-  }
+# Generates a harmless name; no cloud resources created
+resource "random_pet" "name" {
+  prefix = var.name_prefix
 }
 
-#go
+# The resource our Sentinel policy evaluates
+resource "null_resource" "hello" {
+  triggers = {
+    cost_center = var.cost_center   # required by policy
+    name        = random_pet.name.id
+    bump       = var.bump        # lets us force an update during demo
+  }
+}
