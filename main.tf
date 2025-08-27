@@ -14,3 +14,5 @@ resource "null_resource" "demo" {
     bump        = var.bump         # <-- we toggle this to force updates
   }
 }
+
+#go
