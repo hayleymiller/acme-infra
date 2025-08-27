@@ -4,5 +4,3 @@ module "hello" {
   version     = "1.0.0"
   cost_center = var.cost_center
 }
-
-#hello world
