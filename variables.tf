@@ -1,9 +1,5 @@
 variable "cost_center" {
-  type    = string
-  default = "ACME-RND"   # required
-}
-
-variable "bump" {
-  type    = string
-  default = "v1"
+  type        = string
+  description = "Required business tag / cost allocation"
+  default     = "" # we'll set it in the workspace variables
 }
