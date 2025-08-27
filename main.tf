@@ -1,10 +1,16 @@
-module "hello" {
-  source      = "app.terraform.io/Hayley-Onboarding-Org/hello/null"
-  version     = "1.0.0" 
-
-# inputs
-  name_prefix = "acme-app"
-  cost_center = var.cost_center
-  stamp       = "v1" 
+terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2"
+    }
+  }
 }
 
+# The resource Sentinel will evaluate
+resource "null_resource" "demo" {
+  triggers = {
+    cost_center = var.cost_center  # <-- policy requires this to be non-empty
+    bump        = var.bump         # <-- we toggle this to force updates
+  }
+}
