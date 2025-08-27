@@ -3,3 +3,8 @@ variable "cost_center" {
   description = "Required business tag / cost allocation"
   default     = "" # we'll set it in the workspace variables
 }
+
+variable "stamp" {
+  type    = string
+  default = "v1"
+}
