@@ -1,15 +1,5 @@
-variable "name_prefix" {
-  type    = string
-  default = "acme-app"
-}
-
 variable "cost_center" {
-  type    = string
-  default = "ACME-RND"
-}
-
-# NEW: toggle to force updates to null_resource
-variable "stamp" {
-  type    = string
-  default = "v1"
+  type        = string
+  description = "Required business tag / cost allocation"
+  default     = "" # we'll set it in the workspace variables
 }
